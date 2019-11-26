@@ -34,6 +34,7 @@
 
 		if ( ! empty($errors))
 		{
+			echo '<div style="color: red;">'.array_shift($errors).'</div><hr>';
 			$_SESSION['hit']++;
 		}
 

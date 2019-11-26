@@ -6,17 +6,10 @@
 
         $nomer = $_SESSION['logged_user']-> id;
         $userident = $user['identity'];
-
-        //$userBean = R::findOne('users', 'identity = ?', array($identity));
        
         R::exec('UPDATE `users` SET identity = null WHERE `identity` = ?', array(
             $userident
         ));
-       // var_dump ($userBean);
-      //  if($userBean != null)
-     //   {
-   //         R::trash( $userBean );
-    //    }
         $userid = R::load('users', $nomer);
         $userid->identity = $userident;
         R::store($userid);
