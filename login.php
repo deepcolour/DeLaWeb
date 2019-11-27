@@ -19,6 +19,7 @@
 
 				$result = array(
 					'code' => 200,
+					'isRegistrationPage' => false,
 					'message' => 'Успешная авторизация'
 				); 
 				// header('Location: /');
@@ -28,6 +29,7 @@
 				$_SESSION['hit']++;
 				$result = array(
 					'code' => 500,
+					'isRegistrationPage' => false,
 					'message' => 'Неверно введен пароль'
 				);
 			}
@@ -37,6 +39,7 @@
 			$_SESSION['hit']++;
 			$result = array(
 				'code' => 500,
+					'isRegistrationPage' => false,
 				'message' => 'Пользователь с таким логином не существует'
 			);
 		}
@@ -45,6 +48,7 @@
 	{
 		$result = array(
 			'code' => 500,
+					'isRegistrationPage' => false,
 			'message' => 'Введите капчу'
 		);
 	}

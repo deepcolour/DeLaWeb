@@ -5,6 +5,7 @@ require "db.php";
 
 	if(isset($_POST["email_signup"]) && isset($_POST["password_signup"]) && isset($_POST["login_signup"]) && isset($_POST["password_confirmation"]))
 	{
+		$_SESSION['hit'] = 0;
 		$errors = array();
 		if (trim($data['login_signup']) == '')
 		{
@@ -44,7 +45,8 @@ require "db.php";
 			$user->password = password_hash($data['password_signup'], PASSWORD_DEFAULT);
 			R::store($user);
 			$result = array(
-				'message' => "Вы успешно зарегистрированы. Можете перейти на <a href='/'>главную</a> страницу",
+				'message' => "Вы успешно зарегистрированы.",
+				'isRegistrationPage' => true,
 				'code' => 200
 		    ); 
 		} else

@@ -61,11 +61,15 @@ function sendAjaxForm(result_form, ajax_form, url) {
         data: $("#"+ajax_form).serialize(), 
         success: function(response) { 
 			result = $.parseJSON(response);
-			if(result.code == 200)
+			if(result.code == 200 && !result.isRegistrationPage)
 			{
 				
 				window.location.replace("/account.php");
-			} else{
+			} else if(result.code == 200 && result.isRegistrationPage)
+			{
+				showLoginForm();
+				alert(result.message);
+			}else {
 				if(result.message == "Введите капчу")
 				{
 					$('#captcha_box').css('display', 'block');
