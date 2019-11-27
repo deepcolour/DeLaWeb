@@ -63,8 +63,8 @@ function sendAjaxForm(result_form, ajax_form, url) {
 			result = $.parseJSON(response);
 			if(result.code == 200)
 			{
-				alert("Аккаунт успешно авторизирован");
-				// window.location.replace("/");
+				
+				window.location.replace("/account.php");
 			} else{
 				if(result.message == "Введите капчу")
 				{

@@ -193,3 +193,23 @@
  width: 100%;
  }
 }
+
+.welcome_container {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+#logoutClick {
+    width: 10em;
+    height: 3em;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.sync_span {
+    font-size: 17px;
+}

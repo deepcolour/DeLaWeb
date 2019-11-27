@@ -5,7 +5,7 @@
 	$key = '6LeR_cMUAAAAABsNxNS05XZ9BF8da1utfNT4GlHr';
 	$query = $curl.'?secret='.$key.'&response='.$_POST['g-recaptcha-response'].'&remoteip='.$_SERVER['REMOTE_ADDR'];
 	$cdata = json_decode(file_get_contents($query));
-	//echo json_encode($cdata->success == true); 
+
 	if ($_SESSION['hit']  < 3 || $cdata->success == true)
 	{
 		$errors = array();

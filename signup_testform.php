@@ -3,35 +3,35 @@
 require "db.php";
 	$data = $_POST;
 
-	if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["login"]) && isset($_POST["password_2"]))
+	if(isset($_POST["email_signup"]) && isset($_POST["password_signup"]) && isset($_POST["login_signup"]) && isset($_POST["password_confirmation"]))
 	{
 		$errors = array();
-		if (trim($data['login']) == '')
+		if (trim($data['login_signup']) == '')
 		{
 			$errors[] = 'Введите логин';
 		}
 
-		if (trim($data['email']) == '')
+		if (trim($data['email_signup']) == '')
 		{
-			$errors[] = 'Введите email';
+			$errors[] = 'Введите email_signup';
 		}
 
-		if ($data['password'] == '')
+		if ($data['password_signup'] == '')
 		{
 			$errors[] = 'Введите пароль';
 		}
 
-		if ($data['password_2'] != $data['password'])
+		if ($data['password_confirmation'] != $data['password_signup'])
 		{
 			$errors[] = 'Повторный пароль введен неверно';
 		}
 
-		if ( R::count('users', "login = ? ", array($data['login'])) > 0 )
+		if ( R::count('users', "login = ? ", array($data['login_signup'])) > 0 )
 		{
 			$errors[] = 'Пользователь с таким логином уже существует';
 		}
 
-		if ( R::count('users', "email = ? ", array($data['email'])) > 0 )
+		if ( R::count('users', "email = ? ", array($data['email_signup'])) > 0 )
 		{
 			$errors[] = 'Пользователь с таким email уже существует';
 		}
@@ -39,9 +39,9 @@ require "db.php";
 		if (empty($errors))
 		{
 			$user = R::dispense('users');
-			$user->login = $data['login'];
-			$user->email = $data['email'];
-			$user->password = password_hash($data['password'], PASSWORD_DEFAULT);
+			$user->login = $data['login_signup'];
+			$user->email = $data['email_signup'];
+			$user->password = password_hash($data['password_signup'], PASSWORD_DEFAULT);
 			R::store($user);
 			$result = array(
 				'message' => "Вы успешно зарегистрированы. Можете перейти на <a href='/'>главную</a> страницу",
