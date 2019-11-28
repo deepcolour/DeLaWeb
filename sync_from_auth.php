@@ -1,6 +1,5 @@
-
 <?php
-    require "db.php";
+		require "db.php";
     	if(isset($_POST['token'])) {
 		$s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
 		$user = json_decode($s, true);
@@ -13,7 +12,6 @@
 			R::store($userq);
 			$_SESSION['logged_user'] = $user;
         }
-        header('Location: /account.php');
-        		
+        header('Location: /account.php'); 		
 	}	
 ?>

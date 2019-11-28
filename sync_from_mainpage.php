@@ -14,6 +14,5 @@
         R::store($userid);
         $_SESSION['logged_user'] = $user;
         header('Location: /account.php');
-
     }
 ?>
