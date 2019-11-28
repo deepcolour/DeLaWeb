@@ -1,23 +1,6 @@
 <?php
     require "db.php";
-    	if(isset($_POST['token'])) {
-		$s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
-		$user = json_decode($s, true);
-	
-		if (R::count('users', "identity = ?", array($user['identity'])) > 0 ) {
-            $_SESSION['logged_user'] = $user;
-		}else {
-			$userq = R::dispense('users');
-			$userq->identity = $user['identity'];
-			R::store($userq);
-			$_SESSION['logged_user'] = $user;
-		}		
-	}	
-    // if (isset($_SESSION['logged_user'])) { 
-    //     header('Location: /');
-    // }
 ?>
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -46,7 +29,6 @@
                                 <script src="//ulogin.ru/js/ulogin.js"></script>
                                 <div class="welcome_container" style="">
                                     <h3>Добро пожаловать,  <?php 
-
                                         $user_name = $_SESSION['logged_user']-> login != "" ?
                                             $_SESSION['logged_user']-> login  :
                                                 $_SESSION['logged_user']["first_name"];
@@ -57,7 +39,7 @@
                                 <hr>
                                 <span class="sync_span">Синхронизация с соц. сетью:</span>
 
-                                <div id="uLogin" data-ulogin="display=panel;theme=classic;fields=first_name,identity;providers=vkontakte,odnoklassniki,mailru,facebook;hidden=other;redirect_uri=http%3A%2F%2Fhomepage.ru%2Faccount.php;mobilebuttons=0;"></div>                                
+                                <div id="uLogin" data-ulogin="display=panel;theme=classic;fields=first_name,identity;providers=vkontakte,odnoklassniki,mailru,facebook;hidden=other;redirect_uri=http%3A%2F%2Fhomepage.ru%2Fsync_from_mainpage.php;mobilebuttons=0;"></div>                                
 
 
 

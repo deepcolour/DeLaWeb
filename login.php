@@ -22,7 +22,6 @@
 					'isRegistrationPage' => false,
 					'message' => 'Успешная авторизация'
 				); 
-				// header('Location: /');
 			} 
 			else
 			{
